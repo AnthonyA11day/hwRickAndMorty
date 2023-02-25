@@ -118,8 +118,13 @@ extension ViewController: UICollectionViewDataSource {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? PhotoCell else { return UICollectionViewCell() }
         
-        cell.imageView.image = UIImage(named: source[indexPath.item].imageName)
-        cell.label.text = source[indexPath.item].imageName
+        
+        obtainImage { (image) in
+            cell.imageView.image = image
+        }
+        
+//        cell.imageView.image = UIImage(named: source[indexPath.item].imageName)
+//        cell.label.text = source[indexPath.item].imageName
         return cell
     }
 }
