@@ -12,13 +12,19 @@ class ViewController: UIViewController {
     var collectionView: UICollectionView!
     var identifier = "PhotoCell"
     
-    let source: [Photo] = Source.randomPhotos(with: 60)
+    let source: [Photo] = Source.randomPhotos(with: 160)
+    
+    //переменная для cache
+    lazy var cachedDataSourse: NSCache<AnyObject, UIImage> = {
+        let cache = NSCache<AnyObject, UIImage>()
+        return cache
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        title = "Rick & Morty"
-        setupNavigationBar()
         setupColectionView()
+        setupNavigationBar()
+
     }
     
     func setupNavigationBar() {
@@ -107,7 +113,7 @@ extension ViewController: UICollectionViewDelegate {
     
 }
 
-
+//DATA SOURCE
 extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -119,8 +125,31 @@ extension ViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? PhotoCell else { return UICollectionViewCell() }
         
         
+        //если картинка есть в кеше
+        if let image = cachedDataSourse.object(forKey: indexPath.item as AnyObject) {
+            
+            // достал картинку и задал
+            cell.imageView.image = image
+        }
+        else {
+            // иначе отправляю запрос
+            obtainImage { [weak self] (image) in
+                
+                // из запроса ставлю картинку только в той части которая обращается в сеть
+                cell.imageView.image = image
+                
+                // обновил таблицу только один раз для одной ячейки кеша кторой нет
+                collectionView.reloadData()
+                
+                // сохранил картинку в кеш
+                self?.cachedDataSourse.setObject(image!, forKey: indexPath.item as AnyObject)
+            }
+        }
+        
+        cell.label.text = "\(indexPath.item)"
         obtainImage { (image) in
             cell.imageView.image = image
+//            collectionView.reloadData()
         }
         
 //        cell.imageView.image = UIImage(named: source[indexPath.item].imageName)
