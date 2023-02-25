@@ -16,8 +16,19 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Rick & Morty"
+//        title = "Rick & Morty"
+        setupNavigationBar()
         setupColectionView()
+    }
+    
+    func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationItem.title = "Rick & Morty"
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.backgroundColor = .black
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.barTintColor = .black
     }
     
     func setupColectionView() {
@@ -35,10 +46,10 @@ class ViewController: UIViewController {
         view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 8),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 8)
         ])
     }
     
@@ -67,25 +78,28 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemsPerRow: CGFloat = 2    // количество фото по ширине
-        let paddingWidth = 16 * ( itemsPerRow + 1 ) // расстояние отступов
-        let avelibleWidth = collectionView.frame.width - paddingWidth
-        let itemWidth = avelibleWidth / itemsPerRow
+        let paddingWidth = 1 * ( itemsPerRow + 1 ) // расстояние отступов
+        let availableWidth = collectionView.frame.width - paddingWidth
+        let itemWidth = availableWidth / itemsPerRow
         return CGSize(width: itemWidth, height: itemWidth)
     }
 
     //отступы от секции колеекции
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+//        return UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        return UIEdgeInsets(top: 1, left: 0, bottom: 1, right: 0)
+
     }
 
     // отступы по рядам
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 16
+        return 3
+        
     }
 
     // отсутпы между items
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 16
+        return 1
     }
 }
 
@@ -105,6 +119,7 @@ extension ViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? PhotoCell else { return UICollectionViewCell() }
         
         cell.imageView.image = UIImage(named: source[indexPath.item].imageName)
+        cell.label.text = source[indexPath.item].imageName
         return cell
     }
 }
