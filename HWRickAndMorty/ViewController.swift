@@ -24,17 +24,26 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupColectionView()
         setupNavigationBar()
+        setupNavigationBarButtons()
 
     }
     
     func setupNavigationBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationItem.title = "Rick & Morty"
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.backgroundColor = .black
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.systemPink]
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.systemPink]
+        
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.backgroundColor = .black
+    }
+    
+    func setupNavigationBarButtons() {
+//        navigationController?.navigationBar.tintColor = .systemBlue
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Prev", style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: nil)
+
     }
     
     func setupColectionView() {

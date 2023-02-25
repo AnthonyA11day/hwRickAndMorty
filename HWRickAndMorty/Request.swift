@@ -12,16 +12,18 @@ extension ViewController {
     
     func obtainImage(compliation: @escaping ( (UIImage?) -> Void) ) {
         
+        var image = UIImage(named: "default") // default image
+        
         URLSession.shared.dataTask(with: URL(string: "https://dummyimage.com/300x300/ede8e9/f00014&text=RandM")!) { (data, response, error) in
+            
             if let error = error {
                 print("Error: \(error.localizedDescription)")
             }
             else {
-                let image  = UIImage(data: data!)
-                
-                DispatchQueue.main.async {
-                    compliation(image)
-                }
+                image = UIImage(data: data!)
+            }
+            DispatchQueue.main.async {
+                compliation(image)
             }
         }.resume()
     }
