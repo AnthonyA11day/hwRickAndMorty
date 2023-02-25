@@ -15,7 +15,7 @@ struct Photo {
 struct Source {
     static func allPhotos() -> [Photo] {
         [
-            .init(id: 0, imageName: "grayscale21"),
+            .init(id: 0, imageName: "default"),
             .init(id: 1, imageName: "grayscale01"),
             .init(id: 2, imageName: "grayscale02"),
             .init(id: 3, imageName: "grayscale03"),
