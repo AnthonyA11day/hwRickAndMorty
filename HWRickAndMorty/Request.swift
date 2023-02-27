@@ -14,7 +14,9 @@ extension ViewController {
         
         var image = UIImage(named: "default") // default image
         
-        URLSession.shared.dataTask(with: URL(string: "https://dummyimage.com/300x300/ede8e9/f00014&text=RandM")!) { (data, response, error) in
+        guard let url = URL(string: "https://dummyimage.com/300x300/ede8e9/f00014&text=RandM") else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
             
             if let error = error {
                 print("Error: \(error.localizedDescription)")
