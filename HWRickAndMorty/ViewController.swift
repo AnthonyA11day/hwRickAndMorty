@@ -11,9 +11,7 @@ class ViewController: UIViewController {
     
     var collectionView: UICollectionView!
     var identifier = "PhotoCell"
-    
-    let source: [Photo] = Source.randomPhotos(with: 160)
-    
+        
     //переменная для cache
     lazy var cachedDataSourse: NSCache<AnyObject, UIImage> = {
         let cache = NSCache<AnyObject, UIImage>()
@@ -126,7 +124,9 @@ extension ViewController: UICollectionViewDelegate {
 extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return source.count
+//        return source.count
+        return 20
+
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

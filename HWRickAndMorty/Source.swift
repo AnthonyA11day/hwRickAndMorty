@@ -5,6 +5,7 @@
 //  Created by Anthony on 25.02.2023.
 //
 
+/*
 import Foundation
 
 struct Photo {
@@ -33,3 +34,5 @@ struct SectionPhoto {
     let sectionName: String
     var photo: [Photo]
 }
+
+*/
