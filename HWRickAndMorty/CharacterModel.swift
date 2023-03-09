@@ -21,16 +21,18 @@ struct CharacterModel: Codable {
 
 // MARK: - Info
 struct Info: Codable {
-    let count, pages: Int?
-    let next: String?
+    let count: Int?
+    let pages: Int?     //pages count
+    let next: String?   //next page
 //    let prev: JSONNull?
-    let prev: String?
+    let prev: String?   //prev page
 }
 
 // MARK: - Result
 struct Result: Codable {
     let id: Int?
-    let name, status, species, type: String?
+    let name: String?    //name
+    let status, species, type: String?
     let gender: String?
     let origin, location: Location?
     let image: String?

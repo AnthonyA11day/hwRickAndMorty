@@ -17,8 +17,8 @@ enum ApiManager {
     
     var pathURL: String {
         switch self {
-        case .next: return "?page=2"
-        case .prev: return "?page=2"
+        case .next: return "?page="
+        case .prev: return "?page="
         }
     }
 }

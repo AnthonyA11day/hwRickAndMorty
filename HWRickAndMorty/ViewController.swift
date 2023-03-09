@@ -23,7 +23,9 @@ class ViewController: UIViewController {
         setupColectionView()
         setupNavigationBar()
         setupNavigationBarButtons()
-
+        
+        //net
+        restRequst()
     }
     
     func setupNavigationBar() {

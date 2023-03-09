@@ -8,6 +8,38 @@
 import Foundation
 import UIKit
 
-private func restRequst: URLRequest{
-    let url  = URL(string: pathURL, relativeTo: <#T##URL?#>)
+
+extension ViewController {
+    
+    
+    
+//    var baseURL: String {
+//        return "https://rickandmortyapi.com/api/character/"
+//    }
+//
+//    var pathURL: String {
+//        switch self {
+//        case .next: return "?page="
+//        case .prev: return "?page="
+//        }
+//    }
+    
+
+    func restRequst() {
+        
+        guard let baseURL = URL(string: "https://v2.jokeapi.dev/joke/Any") else { return }
+        
+        var requst = URLRequest(url: baseURL)
+        
+        let task = URLSession.shared.dataTask(with: requst) { (data, respons, error) in
+            
+            if let data = data, let joke = try?
+                
+                JSONDecoder().decode(JokeStruck.self, from: data) {
+                print(joke.flags?.racist)
+                print(joke.setup)
+            }
+        }
+        task.resume()
+    }
 }
