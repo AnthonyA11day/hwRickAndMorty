@@ -11,6 +11,9 @@ class ViewController: UIViewController {
     
     var collectionView: UICollectionView!
     var identifier = "PhotoCell"
+    
+    var nextLink = ""
+    var prevLink = ""
         
     //переменная для cache
     lazy var cachedDataSourse: NSCache<AnyObject, UIImage> = {
@@ -25,7 +28,8 @@ class ViewController: UIViewController {
         setupNavigationBarButtons()
         
         //net
-        restRequst()
+        let startURL = "https://rickandmortyapi.com/api/character/"
+        restRequst(urlString: startURL)
     }
     
     func setupNavigationBar() {
@@ -41,10 +45,18 @@ class ViewController: UIViewController {
     
     func setupNavigationBarButtons() {
 //        navigationController?.navigationBar.tintColor = .systemBlue
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Prev", style: .plain, target: self, action: nil)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: nil)
-
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Prev", style: .plain, target: self, action: #selector(prevAction))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextAction))
     }
+                                                            
+    @objc func prevAction() {
+        restRequst(urlString: prevLink)
+    }
+    
+    @objc func nextAction() {
+        restRequst(urlString: nextLink)
+    }
+    
     
     func setupColectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: setupFlowLayout())
@@ -56,7 +68,6 @@ class ViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-
         
         view.addSubview(collectionView)
         
@@ -128,7 +139,6 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        return source.count
         return 20
-
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -158,6 +168,7 @@ extension ViewController: UICollectionViewDataSource {
         }
         
         cell.label.text = "\(indexPath.item)"
+        
         obtainImage { (image) in
             cell.imageView.image = image
 //            collectionView.reloadData()

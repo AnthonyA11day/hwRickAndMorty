@@ -8,36 +8,27 @@
 import Foundation
 import UIKit
 
-
 extension ViewController {
-    
-    
-    
-//    var baseURL: String {
-//        return "https://rickandmortyapi.com/api/character/"
-//    }
-//
-//    var pathURL: String {
-//        switch self {
-//        case .next: return "?page="
-//        case .prev: return "?page="
-//        }
-//    }
-    
 
-    func restRequst() {
+    func restRequst(urlString: String) {
+                
+        guard let baseURL = URL(string: urlString) else { return }
         
-        guard let baseURL = URL(string: "https://v2.jokeapi.dev/joke/Any") else { return }
-        
-        var requst = URLRequest(url: baseURL)
+        let requst = URLRequest(url: baseURL)
         
         let task = URLSession.shared.dataTask(with: requst) { (data, respons, error) in
             
-            if let data = data, let joke = try?
+            if let data = data, let character = try?
                 
-                JSONDecoder().decode(JokeStruck.self, from: data) {
-                print(joke.flags?.racist)
-                print(joke.setup)
+                JSONDecoder().decode(CharacterModel.self, from: data) {
+                
+                self.nextLink = character.info?.next ?? ""
+                
+                self.prevLink = character.info?.prev ?? ""
+                
+                print(character.info?.pages ?? "")
+
+//                print(character.results?.name) //array
             }
         }
         task.resume()

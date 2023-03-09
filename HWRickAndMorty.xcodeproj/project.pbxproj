@@ -18,7 +18,6 @@
 		924CFB3D29B8705300D9F4AD /* RequestRest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924CFB3C29B8705300D9F4AD /* RequestRest.swift */; };
 		924CFB3F29B871DA00D9F4AD /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924CFB3E29B871DA00D9F4AD /* CharacterModel.swift */; };
 		924CFB4129B875F500D9F4AD /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924CFB4029B875F500D9F4AD /* URLManager.swift */; };
-		924CFB8729B9C16400D9F4AD /* JokeStruck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924CFB8629B9C16400D9F4AD /* JokeStruck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +34,6 @@
 		924CFB3C29B8705300D9F4AD /* RequestRest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRest.swift; sourceTree = "<group>"; };
 		924CFB3E29B871DA00D9F4AD /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
 		924CFB4029B875F500D9F4AD /* URLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManager.swift; sourceTree = "<group>"; };
-		924CFB8629B9C16400D9F4AD /* JokeStruck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeStruck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +72,6 @@
 				924CFA1029A9CEAE00D9F4AD /* PhotoCell.swift */,
 				924CFA1429AA173100D9F4AD /* Request.swift */,
 				924CFB3C29B8705300D9F4AD /* RequestRest.swift */,
-				924CFB8629B9C16400D9F4AD /* JokeStruck.swift */,
 				924CFB3E29B871DA00D9F4AD /* CharacterModel.swift */,
 				924CFB4029B875F500D9F4AD /* URLManager.swift */,
 				924CFA0229A9C6E400D9F4AD /* Main.storyboard */,
@@ -157,7 +154,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				924CFB4129B875F500D9F4AD /* URLManager.swift in Sources */,
-				924CFB8729B9C16400D9F4AD /* JokeStruck.swift in Sources */,
 				924CFA1129A9CEAE00D9F4AD /* PhotoCell.swift in Sources */,
 				924CFB3D29B8705300D9F4AD /* RequestRest.swift in Sources */,
 				924CFA1529AA173100D9F4AD /* Request.swift in Sources */,
