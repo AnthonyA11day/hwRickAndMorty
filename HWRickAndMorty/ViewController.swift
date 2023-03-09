@@ -50,11 +50,16 @@ class ViewController: UIViewController {
     }
                                                             
     @objc func prevAction() {
-        restRequst(urlString: prevLink)
+//        restRequst(urlString: prevLink)
+        print(prevLink)
+        arrayRequst()
+
+        
     }
     
     @objc func nextAction() {
         restRequst(urlString: nextLink)
+        print(nextLink)
     }
     
     
