@@ -14,6 +14,10 @@ class ViewController: UIViewController {
     
     var nextLink = ""
     var prevLink = ""
+    var nameArray: [String] = []
+    var imageArray: [String] = []
+//    var imageArray: [UIImage] = []
+
         
     //переменная для cache
     lazy var cachedDataSourse: NSCache<AnyObject, UIImage> = {
@@ -28,8 +32,9 @@ class ViewController: UIViewController {
         setupNavigationBarButtons()
         
         //net
-        let startURL = "https://rickandmortyapi.com/api/character/"
-        restRequst(urlString: startURL)
+//        let startURL = "https://rickandmortyapi.com/api/character/?page=1"
+        restRequst(urlString: "https://rickandmortyapi.com/api/character/?page=1")
+        
     }
     
     func setupNavigationBar() {
@@ -50,16 +55,16 @@ class ViewController: UIViewController {
     }
                                                             
     @objc func prevAction() {
-//        restRequst(urlString: prevLink)
+        restRequst(urlString: prevLink)
         print(prevLink)
-        arrayRequst()
-
-        
+//        collectionView.reloadData()
     }
     
     @objc func nextAction() {
+
         restRequst(urlString: nextLink)
         print(nextLink)
+//        collectionView.reloadData()
     }
     
     
@@ -143,44 +148,56 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        return source.count
-        return 20
+        return nameArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? PhotoCell else { return UICollectionViewCell() }
         
-        
         //если картинка есть в кеше
         if let image = cachedDataSourse.object(forKey: indexPath.item as AnyObject) {
-            
+
             // достал картинку и задал
             cell.imageView.image = image
         }
         else {
             // иначе отправляю запрос
             obtainImage { [weak self] (image) in
-                
+
                 // из запроса ставлю картинку только в той части которая обращается в сеть
                 cell.imageView.image = image
-                
+
                 // обновил таблицу только один раз для одной ячейки кеша кторой нет
                 collectionView.reloadData()
-                
+
                 // сохранил картинку в кеш
                 self?.cachedDataSourse.setObject(image!, forKey: indexPath.item as AnyObject)
             }
         }
         
-        cell.label.text = "\(indexPath.item)"
+
+        
+//        collectionView.reloadData()
+//        print(imageArray[indexPath.item])
+        
+//        cell.imageView.image = UIImage(named: sourse[indexPath.item].imageName)
         
         obtainImage { (image) in
             cell.imageView.image = image
-//            collectionView.reloadData()
+            collectionView.reloadData()
         }
         
+        cell.label.text = nameArray[indexPath.item] // + " " + "\(indexPath.item)"
+
+        
 //        cell.imageView.image = UIImage(named: source[indexPath.item].imageName)
-//        cell.label.text = source[indexPath.item].imageName
+//        cell.imageView.image = UIImage(named: imageArray[indexPath.item])
+        
+//        collectionView.reloadData()
+
+        print(imageArray.count)
+        
         return cell
     }
 }
