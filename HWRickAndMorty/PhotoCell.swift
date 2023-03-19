@@ -23,6 +23,10 @@ class PhotoCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configure(some: Any) {
+        
+    }
+    
     func setupImageView() {
         imageView.backgroundColor = .black
         imageView.translatesAutoresizingMaskIntoConstraints = false

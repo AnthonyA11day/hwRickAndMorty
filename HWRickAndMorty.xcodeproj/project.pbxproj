@@ -19,6 +19,7 @@
 		924CFB3F29B871DA00D9F4AD /* CharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924CFB3E29B871DA00D9F4AD /* CharacterModel.swift */; };
 		924CFB4129B875F500D9F4AD /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924CFB4029B875F500D9F4AD /* ApiManager.swift */; };
 		924CFB8929B9F32400D9F4AD /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924CFB8829B9F32400D9F4AD /* Api.swift */; };
+		926E8D8829C4824700749760 /* RequestFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926E8D8729C4824700749760 /* RequestFetch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		924CFB3E29B871DA00D9F4AD /* CharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterModel.swift; sourceTree = "<group>"; };
 		924CFB4029B875F500D9F4AD /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		924CFB8829B9F32400D9F4AD /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		926E8D8729C4824700749760 /* RequestFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFetch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				924CFA0029A9C6E400D9F4AD /* ViewController.swift */,
 				924CFA1029A9CEAE00D9F4AD /* PhotoCell.swift */,
 				924CFA1429AA173100D9F4AD /* Request.swift */,
+				926E8D8729C4824700749760 /* RequestFetch.swift */,
 				924CFB3C29B8705300D9F4AD /* RequestRest.swift */,
 				924CFB4029B875F500D9F4AD /* ApiManager.swift */,
 				924CFB3E29B871DA00D9F4AD /* CharacterModel.swift */,
@@ -160,6 +163,7 @@
 				924CFB4129B875F500D9F4AD /* ApiManager.swift in Sources */,
 				924CFA1129A9CEAE00D9F4AD /* PhotoCell.swift in Sources */,
 				924CFB3D29B8705300D9F4AD /* RequestRest.swift in Sources */,
+				926E8D8829C4824700749760 /* RequestFetch.swift in Sources */,
 				924CFA1529AA173100D9F4AD /* Request.swift in Sources */,
 				924CFA0129A9C6E400D9F4AD /* ViewController.swift in Sources */,
 				924CF9FD29A9C6E400D9F4AD /* AppDelegate.swift in Sources */,

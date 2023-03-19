@@ -14,9 +14,9 @@ class ViewController: UIViewController {
     
     var nextLink = ""
     var prevLink = ""
-    var nameArray: [String] = []
-    var imageArray: [String] = []
-//    var imageArray: [UIImage] = []
+//    var names: [String] = []
+//    var images: [UIImage] = []
+    var characters: [(name: String, image: UIImage)] = []
 
         
     //переменная для cache
@@ -56,15 +56,11 @@ class ViewController: UIViewController {
                                                             
     @objc func prevAction() {
         restRequst(urlString: prevLink)
-        print(prevLink)
-//        collectionView.reloadData()
     }
     
     @objc func nextAction() {
-
+        navigationItem.rightBarButtonItem?.isEnabled = false
         restRequst(urlString: nextLink)
-        print(nextLink)
-//        collectionView.reloadData()
     }
     
     
@@ -124,13 +120,11 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
 //        return UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         return UIEdgeInsets(top: 1, left: 0, bottom: 1, right: 0)
-
     }
 
     // отступы по рядам
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 3
-        
     }
 
     // отсутпы между items
@@ -148,55 +142,86 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        return source.count
-        return nameArray.count
+//        return imageArray.count
+        
+        return characters.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? PhotoCell else { return UICollectionViewCell() }
         
-        //если картинка есть в кеше
-        if let image = cachedDataSourse.object(forKey: indexPath.item as AnyObject) {
-
-            // достал картинку и задал
-            cell.imageView.image = image
-        }
-        else {
-            // иначе отправляю запрос
-            obtainImage { [weak self] (image) in
-
-                // из запроса ставлю картинку только в той части которая обращается в сеть
-                cell.imageView.image = image
-
-                // обновил таблицу только один раз для одной ячейки кеша кторой нет
-                collectionView.reloadData()
-
-                // сохранил картинку в кеш
-                self?.cachedDataSourse.setObject(image!, forKey: indexPath.item as AnyObject)
-            }
-        }
+//        //если картинка есть в кеше
+//        if let image = cachedDataSourse.object(forKey: indexPath.item as AnyObject) {
+//
+//            // достал картинку и задал
+//            cell.imageView.image = image
+//        }
+//        else {
+//            // иначе отправляю запрос
+//            obtainImage { [weak self] (image) in
+//
+//                // из запроса ставлю картинку только в той части которая обращается в сеть
+//                cell.imageView.image = imageArray[indexPath.item]
+//
+//                // обновил таблицу только один раз для одной ячейки кеша кторой нет
+//                collectionView.reloadData()
+//
+//                // сохранил картинку в кеш
+//                self?.cachedDataSourse.setObject(image!, forKey: indexPath.item as AnyObject)
+//            }
+//        }
         
 
+        //если картинка есть в кеше
+//        if let image = cachedDataSourse.object(forKey: indexPath.item as AnyObject) {
+//
+//            // достал картинку и задал
+//            cell.imageView.image = characters[indexPath.item].image
+//        }
+//        else {
+//
+//            restRequst(urlString: prevLink)
+//
+//
+//            // иначе отправляю запрос
+//            restRequst { [weak self] (image) in
+//
+//                // из запроса ставлю картинку только в той части которая обращается в сеть
+//                cell.imageView.image = imageArray[indexPath.item]
+//
+//                // обновил таблицу только один раз для одной ячейки кеша кторой нет
+//                collectionView.reloadData()
+//
+//                // сохранил картинку в кеш
+//                self?.cachedDataSourse.setObject(image!, forKey: indexPath.item as AnyObject)
+//            }
+//        }
+        
+        
+        
+        
+        
+        
+        
         
 //        collectionView.reloadData()
 //        print(imageArray[indexPath.item])
         
 //        cell.imageView.image = UIImage(named: sourse[indexPath.item].imageName)
         
-        obtainImage { (image) in
-            cell.imageView.image = image
-            collectionView.reloadData()
-        }
+//        obtainImage { (image) in
+//            cell.imageView.image = image
+//            collectionView.reloadData()
+//        }
         
-        cell.label.text = nameArray[indexPath.item] // + " " + "\(indexPath.item)"
+        
+        
+        
 
-        
-//        cell.imageView.image = UIImage(named: source[indexPath.item].imageName)
-//        cell.imageView.image = UIImage(named: imageArray[indexPath.item])
-        
+        cell.label.text = characters[indexPath.item].name
+        cell.imageView.image = characters[indexPath.item].image
 //        collectionView.reloadData()
-
-        print(imageArray.count)
         
         return cell
     }
